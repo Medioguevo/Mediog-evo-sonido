@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import type { Play } from "src/types"
+    import type { Play } from "$lib/types"
     import SceneComponent from "./SceneComponent.svelte"
 
     export let play: Play
@@ -8,7 +8,9 @@
 
 </script>
 
-<h1>{play.title}</h1>
+<h1>
+    <a href="/">&#60;</a> {play.title}
+</h1>
 
 <div class="accordion accordion-flush" {id}>
     {#each play.scenes as scene}

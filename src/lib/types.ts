@@ -12,3 +12,8 @@ export type Play = {
     title: string
     scenes: Scene[]
 }
+
+export type Profile = {
+    name: string
+    plays_collection: Play[]
+}

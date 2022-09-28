@@ -1,6 +1,6 @@
 <script lang=ts>
 
-    import type { Play, Scene } from "../../types"
+    import type { Play, Scene } from "../types"
     import TrackComponent from "./TrackComponent.svelte"
 
     export let scene: Scene
