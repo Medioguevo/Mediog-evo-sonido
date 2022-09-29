@@ -2,9 +2,10 @@
 
     import type { Play } from "$lib/types"
     import SceneComponent from "./SceneComponent.svelte"
+    import { idStringFrom } from "$lib/aux"
 
     export let play: Play
-    let id = play.title.toLowerCase().replace(/[^a-z]/g,"-")
+    let playId = idStringFrom(play.title)
 
 </script>
 
@@ -12,8 +13,8 @@
     <a href="/">&#60;</a> {play.title}
 </h1>
 
-<div class="accordion accordion-flush" {id}>
+<div class="accordion" id={playId}>
     {#each play.scenes as scene}
-    <SceneComponent {scene} play_id={id}/>
+    <SceneComponent {scene} {playId}/>
     {/each}
 </div>
