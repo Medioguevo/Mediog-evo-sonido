@@ -10,7 +10,10 @@
 </script>
 
 <h1>
-    <a href="/">&#60;</a> {play.title}
+    <a href="/">
+        <img class="rewind" src="/images/eject.svg" alt="Volver al panel">
+    </a>
+    {play.title}
 </h1>
 
 <div class="accordion" id={playId}>
@@ -18,3 +21,15 @@
     <SceneComponent {scene} {playId}/>
     {/each}
 </div>
+
+<style>
+    img.rewind {
+        width: 2rem;
+        margin: 1rem;
+    }
+    h1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+</style>
