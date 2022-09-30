@@ -7,4 +7,6 @@
 
 </script>
 
-<PlayComponent play={data}/>
+<main class="container-fluid bg-dark text-white">
+    <PlayComponent play={data}/>
+</main>

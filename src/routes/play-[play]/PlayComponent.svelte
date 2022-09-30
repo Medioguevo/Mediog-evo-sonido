@@ -10,10 +10,10 @@
 </script>
 
 <h1>
-    <a href="/">
+    <a href="/" class="text-white">
         <img class="rewind" src="/images/eject.svg" alt="Volver al panel">
+        {play.title}
     </a>
-    {play.title}
 </h1>
 
 <div class="accordion" id={playId}>
@@ -31,5 +31,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+    a {
+        text-decoration: none;
     }
 </style>
