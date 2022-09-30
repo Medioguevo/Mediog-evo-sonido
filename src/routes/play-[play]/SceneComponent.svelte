@@ -13,12 +13,12 @@
 
 <div class="accordion-item">
   <h2 class="accordion-header" id="head-{sceneId}">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{sceneId}" aria-expanded="false" aria-controls={sceneId}>
+    <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#{sceneId}" aria-expanded="false" aria-controls={sceneId}>
         {scene.title}
     </button>
   </h2>
   <div id={sceneId} class="accordion-collapse collapse" aria-labelledby="head-{sceneId}" data-bs-parent="#{playId}">
-    <div class="accordion-body">
+    <div class="accordion-body bg-dark text-white">
       {#each scene.tracks as track }
       <TrackComponent {track}/>
       {/each}

@@ -8,3 +8,9 @@
 </script>
 
 <DashboardComponent {data}/>
+
+<style>
+    main {
+        height: 100vh;
+    }
+</style>
