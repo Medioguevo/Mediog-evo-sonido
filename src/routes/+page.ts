@@ -143,8 +143,6 @@ export const profile: Profile = {
     ]
 }
 
-export function load ( fn: PageLoad ) {
-
+export const load: PageLoad = function () {
     return profile
-
 }
