@@ -5,7 +5,7 @@ export const profile: Profile = {
     name: "Mediogüevo",
     plays_collection: [
         {
-            title: "A comunidade",
+            title: "Patio sen luces",
             scenes: [
                 {
                     title: "Acto 1º",
