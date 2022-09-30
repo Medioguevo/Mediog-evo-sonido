@@ -7,8 +7,6 @@
     export let scene: Scene
     export let playId: string
 
-    const encoder = new TextEncoder
-
     let sceneId = idStringFrom(scene.title)
 
 </script>
