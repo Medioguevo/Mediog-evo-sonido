@@ -8,18 +8,18 @@
     let player: HTMLAudioElement
     let background = "none"
     let buttonIcon: string
+    let track_name_color: string
 
     $: {
         background = playing ? "yellow" : "none"
         buttonIcon = playing ? "/images/pause.svg" : "/images/play.svg"
+        track_name_color = playing ? "text-dark" : "text-white"
         if (playing) player?.play()
         else player?.pause()
     }
 
-    function playHandler (event: Event): void {
-        if (event.target instanceof Element) {
-            playing = !playing
-        }
+    function playHandler (): void {
+        playing = !playing
     }
 
     function resetHandler (): void {
@@ -27,13 +27,17 @@
         player.currentTime = 0
     }
 
+    function endHandler (): void {
+        resetHandler()
+    }
+
 </script>
 
-<div>
-    <audio bind:this={player} preload="auto" src={track.src}></audio>
+<div class="bg-dark text-white">
+    <audio bind:this={player} preload="auto" src={track.src} on:ended={endHandler}></audio>
     <button class="play" on:click={playHandler} style="--playing-background: {background}">
         <img src={buttonIcon} alt="Play button">
-        <p>{track.title}</p>
+        <p class="{track_name_color}">{track.title}</p>
     </button>
     {#if playing || player?.currentTime > 0}
     <button on:click={resetHandler}>
