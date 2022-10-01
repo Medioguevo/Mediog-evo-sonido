@@ -1,5 +1,5 @@
 import type { RequestHandler } from "@sveltejs/kit";
-import app_config from "src/app_config"
+import app_config from "../../app_config"
 
 export const prerender = true;
 
