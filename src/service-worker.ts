@@ -11,6 +11,18 @@ const RUNTIME_CACHE = 'runtime';
 
 const FILES_FOR_INSTALLATION_CACHE = build.concat(files);
 
+function showCacheContent() {
+	caches.open(INSTALLATION_CACHE).then(function(cache) {
+		cache.keys().then(function(requests) {
+		var urls = requests.map(function(request) {
+			return request.url;
+		});
+		console.log(urls.sort());
+		});
+	});
+}
+
+
 worker.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(
 		caches.open(INSTALLATION_CACHE)
@@ -34,6 +46,7 @@ worker.addEventListener('activate', (event: ExtendableEvent) => {
 });
 
 worker.addEventListener('fetch', (event: ExtendableEvent) => {
+/*	showCacheContent()
 	if (event.request.url.startsWith(self.location.origin)) {
 		event.respondWith(
 		  caches.match(event.request)
@@ -45,4 +58,5 @@ worker.addEventListener('fetch', (event: ExtendableEvent) => {
 			)
 		)
 	}
+	*/
 });
