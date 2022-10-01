@@ -1,9 +1,9 @@
 <script lang="ts">
 
-    import type { PageData } from "./$types";
+    import type { Profile } from "$lib/types";
     import DashboardComponent from "./DashboardComponent.svelte";
 
-    export let data: PageData
+    export let data: Profile
 
 </script>
 

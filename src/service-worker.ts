@@ -1,65 +1,48 @@
-// based on https://github.com/tretapey/svelte-pwa/blob/master/public/service-worker.js
-// taked from https://rodneylab.com/sveltekit-pwa/
+// Taked from: https://googlechrome.github.io/samples/service-worker/basic/// 
+
+import type { ServiceWorker, ExtendableEvent } from './service-worker'
 
 import { build, files, version } from '$service-worker';
 
-const worker = self;
-const CACHE_NAME = `static-cache-${version}`;
+const worker: ServiceWorker = self;
 
-const to_cache = build.concat(files);
+const INSTALLATION_CACHE = `static-cache-${version}`;
+const RUNTIME_CACHE = 'runtime';
 
-worker.addEventListener('install', (event) => {
+const FILES_FOR_INSTALLATION_CACHE = build.concat(files);
 
-  console.log('[ServiceWorker] Install');
-
+worker.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(
-		caches.open(CACHE_NAME).then(
-      (cache) => {
+		caches.open(INSTALLATION_CACHE)
+			.then( cache => cache.addAll(FILES_FOR_INSTALLATION_CACHE) )
+			.then( worker.skipWaiting() )
+	)
+})
 
-        console.log('[ServiceWorker] Pre-caching offline page');
-
-        return cache.addAll(to_cache).then(() => {
-          worker.skipWaiting();
-        });
-
-		  }
-    ),
+worker.addEventListener('activate', (event: ExtendableEvent) => {
+	const currentCaches = [INSTALLATION_CACHE, RUNTIME_CACHE];
+	event.waitUntil(
+		caches.keys()
+			.then(cacheNames => {
+				return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+			})
+			.then(cachesToDelete => Promise.all(
+					cachesToDelete.map(cacheToDelete => caches.delete(cacheToDelete))
+			))
+			.then( () => worker.clients.claim() )
 	);
-
 });
 
-worker.addEventListener('activate', (event) => {
-
-	console.log('[ServiceWorker] Activate');
-
-	// Remove previous cached data from disk
-	event.waitUntil(
-		caches.keys().then(async (keys) =>
-			Promise.all(
-				keys.map((key) => {
-					if (key !== CACHE_NAME) {
-						console.log('[ServiceWorker] Removing old cache', key);
-						return caches.delete(key);
-					}
-				}),
-			),
-		),
-	);
-
-	worker.clients.claim();
-  
-});
-
-self.addEventListener('fetch', (event) => {
-	console.log('[ServiceWorker] Fetch', event.request.url);
-	if (event.request.mode !== 'navigate') {
-		return;
+worker.addEventListener('fetch', (event: ExtendableEvent) => {
+	if (event.request.url.startsWith(self.location.origin)) {
+		event.respondWith(
+		  caches.match(event.request)
+		  	.then(cachedResponse => cachedResponse ? cachedResponse : caches.open(RUNTIME_CACHE)
+				.then(cache => fetch(event.request)
+					.then(response => cache.put(event.request, response.clone())
+							.then(() => response)
+				))
+			)
+		)
 	}
-	event.respondWith(
-		fetch(event.request).catch(() => {
-			return caches.open(CACHE_NAME).then((cache) => {
-				return cache.match('offline.html');
-			});
-		}),
-	);
 });

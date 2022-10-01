@@ -146,3 +146,17 @@ export const profile: Profile = {
 export const load: PageLoad = function () {
     return profile
 }
+
+export function traskList () {
+    const tracks: string[] = []
+    profile.plays_collection.forEach(
+        play =>{
+            play.scenes.forEach(
+                scene => scene.tracks.forEach(
+                    track => tracks.push(track.src)
+                )
+            )
+        }
+    )
+    return tracks
+}
