@@ -46,7 +46,7 @@ worker.addEventListener('activate', (event: ExtendableEvent) => {
 });
 
 worker.addEventListener('fetch', (event: ExtendableEvent) => {
-/*	showCacheContent()
+	showCacheContent()
 	if (event.request.url.startsWith(self.location.origin)) {
 		event.respondWith(
 		  caches.match(event.request)
@@ -58,5 +58,5 @@ worker.addEventListener('fetch', (event: ExtendableEvent) => {
 			)
 		)
 	}
-	*/
+	
 });
