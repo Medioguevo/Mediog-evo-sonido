@@ -9,7 +9,8 @@ const worker: ServiceWorker = self;
 const INSTALLATION_CACHE = `static-cache-${version}`;
 const RUNTIME_CACHE = 'runtime';
 
-const FILES_FOR_INSTALLATION_CACHE = build.concat(files);
+const FILES_FOR_INSTALLATION_CACHE = build.concat(files)
+	.concat([`${worker.registration.scope}service-worker.js`])
 
 function showCacheContent() {
 	caches.open(INSTALLATION_CACHE).then(function(cache) {
