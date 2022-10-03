@@ -11,11 +11,15 @@
     let track_name_color: string
 
     $: {
-        background = playing ? "yellow" : "none"
-        buttonIcon = playing ? "/images/pause.svg" : "/images/play.svg"
-        track_name_color = playing ? "text-dark" : "text-white"
-        if (playing) player?.play()
-        else player?.pause()
+        try {
+            background = playing ? "yellow" : "none"
+            buttonIcon = playing ? "/images/pause.svg" : "/images/play.svg"
+            track_name_color = playing ? "text-dark" : "text-white"
+            if (playing) player?.play()
+            else player?.pause()
+        } catch (error) {
+            alert(error)   
+        }
     }
 
     function playHandler (): void {
