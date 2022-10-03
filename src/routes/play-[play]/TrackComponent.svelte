@@ -34,7 +34,7 @@
 </script>
 
 <div class="bg-dark text-white">
-    <audio bind:this={player} preload="none" src={track.src} on:ended={endHandler}></audio>
+    <audio bind:this={player} preload="auto" src={track.src} on:ended={endHandler}></audio>
     <button class="play" on:click={playHandler} style="--playing-background: {background}">
         <img src={buttonIcon} alt="Play button">
         <p class="{track_name_color}">{track.title}</p>
