@@ -14,13 +14,4 @@ export default [
             "mainIndex", ["file", "chunk"], { unique: false}
         )
     },
-    db => {
-        const testObjectsStore = db.createObjectStore(
-            "test1",
-            { keyPath: "id" }
-        )
-        testObjectsStore.createIndex(
-            "idIndex", "id", { unique: true}
-        )
-    }
 ]
