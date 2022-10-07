@@ -2,7 +2,7 @@ export default [
     db => {
         const testObjectsStore = db.createObjectStore(
             "test",
-            { keyPath: ["file", "chunk"] }
+            { autoIncrement : true }
         )
         testObjectsStore.createIndex(
             "fileIndex", "file", { unique: false}

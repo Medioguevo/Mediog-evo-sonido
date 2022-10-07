@@ -45,3 +45,13 @@ export class DB {
 
     }
 }
+
+export function writeChunk ( fileName, chunkIndex, data, dbObject, objectsStoreName ) {
+    const transaction = dbObject.db.transaction([objectsStoreName], "readwrite")
+    transaction.addEventListener("complete", event => {
+        console.log(event)
+    })
+    transaction.addEventListener("error", event => {
+        console.error(event)
+    })
+}
