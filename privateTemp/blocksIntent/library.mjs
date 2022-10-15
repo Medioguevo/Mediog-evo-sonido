@@ -6,6 +6,9 @@ export const modes = {
     READONLY: 0,
     READWRITE: 1,
     APPEND: 2,
+    WRITABLESTREAM: 3,
+    READABLESTREAM: 4,
+    APPENDSTREAM: 5,
 }
 
 export function testRequirements () {
@@ -96,7 +99,7 @@ export class idbFile {
                             data.push(row.value)
                             row.continue();
                         } else {
-                          resolve(data)
+                          resolve(data.join("\n"))
                         }
                     }
             }
@@ -124,6 +127,38 @@ export class idbFile {
 
                 }
             }
+    }
+
+    writeStream () {
+        let dbCursor
+        const writableStream = new WritableStream({
+            start() {
+                if ( this.mode != modes.READWRITE ) throw "This file isn't in READWRITE mode"
+                this.dataBase.transaction([this.fileName], "readwrite")
+                    .objectStore(this.fileName)
+                    .openCursor()
+                    .onsuccess = (event) => dbCursor = event.target.result
+            },
+            write(chunk) {
+              return new Promise((resolve, reject) => {
+                dbCursor
+                view[0] = chunk;
+                result += decoded;
+                resolve();
+              });
+            },
+            close() {
+              const listItem = document.createElement('li');
+              listItem.textContent = `[MESSAGE RECEIVED] ${result}`;
+              list.appendChild(listItem);
+            },
+            abort(err) {
+              console.log("Sink error:", err);
+            }
+          }, queuingStrategy);
+          
+          sendMessage("Hello, world.", writableStream);
+          Copy to Clipboard
     }
 
 
