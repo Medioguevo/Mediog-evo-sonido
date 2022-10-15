@@ -1,6 +1,7 @@
 <script lang="ts">
 
     import { onMount } from "svelte"
+    import { tweened } from "svelte/motion"
     import type { Track } from "$lib/types"
 
     export let track: Track
@@ -8,7 +9,7 @@
     let playing = false
     let player: HTMLAudioElement
     let trackDuration = 0
-    let currenTrackPosition = 0
+    let currenTrackPosition = tweened(0)
     let background = "none"
     let buttonIcon: string
     let track_name_color: string
@@ -17,8 +18,8 @@
         player.addEventListener("durationchange", () => {
             trackDuration = player.duration
         })
-        player.addEventListener("progress", ()=>{
-            currenTrackPosition = player.currentTime
+        player.addEventListener("timeupdate", ()=>{
+            currenTrackPosition.set(player.currentTime)
         })
     })
 
@@ -62,7 +63,7 @@
     {/if}
 </div>
 
-<progress max={trackDuration} value={currenTrackPosition}/>
+<progress max={trackDuration} value={$currenTrackPosition}/>
 
 <style>
     div {
