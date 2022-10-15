@@ -1,14 +1,26 @@
 <script lang="ts">
 
-    import type { Track } from "$lib/types";
+    import { onMount } from "svelte"
+    import type { Track } from "$lib/types"
 
     export let track: Track
 
     let playing = false
     let player: HTMLAudioElement
+    let trackDuration = 0
+    let currenTrackPosition = 0
     let background = "none"
     let buttonIcon: string
     let track_name_color: string
+
+    onMount(()=>{
+        player.addEventListener("durationchange", () => {
+            trackDuration = player.duration
+        })
+        player.addEventListener("progress", ()=>{
+            currenTrackPosition = player.currentTime
+        })
+    })
 
     $: {
         try {
@@ -18,7 +30,7 @@
             if (playing) player?.play()
             else player?.pause()
         } catch (error) {
-            alert(error)   
+            alert(error)
         }
     }
 
@@ -50,6 +62,7 @@
     {/if}
 </div>
 
+<progress max={trackDuration} value={currenTrackPosition}/>
 
 <style>
     div {
@@ -76,5 +89,8 @@
     img {
         width: 2rem;
         margin-right: 1rem;
+    }
+    progress {
+        width: 100%;
     }
 </style>
