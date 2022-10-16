@@ -63,7 +63,9 @@
     {/if}
 </div>
 
+{#if playing}
 <progress max={trackDuration} value={$currenTrackPosition}/>
+{/if}
 
 <style>
     div {
