@@ -20,4 +20,7 @@ unfile.write("Jajaja")
 
 console.log( await unfile.read() )
 
+unfile = await idbFile.open("ficheroPruebasStream", modes.READWRITE)
 
+fetch("https://medioguevo.up.railway.app/audio/1.%20INICIO-ENTRADA%20DE%20PUBLICO.mp3")
+    .then( response =>  unfile.writeStream(response.body) )

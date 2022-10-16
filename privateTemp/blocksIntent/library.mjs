@@ -2,6 +2,8 @@ import migrations from "./migrations.mjs";
 
 const dbName = "idbFiles"
 
+const CHUNK_SIZE = 512
+
 export const modes = {
     READONLY: 0,
     READWRITE: 1,
@@ -129,38 +131,31 @@ export class idbFile {
             }
     }
 
-    writeStream () {
-        let dbCursor
-        const writableStream = new WritableStream({
-            start() {
-                if ( this.mode != modes.READWRITE ) throw "This file isn't in READWRITE mode"
-                this.dataBase.transaction([this.fileName], "readwrite")
-                    .objectStore(this.fileName)
-                    .openCursor()
-                    .onsuccess = (event) => dbCursor = event.target.result
-            },
-            write(chunk) {
-              return new Promise((resolve, reject) => {
-                dbCursor
-                view[0] = chunk;
-                result += decoded;
-                resolve();
-              });
-            },
-            close() {
-              const listItem = document.createElement('li');
-              listItem.textContent = `[MESSAGE RECEIVED] ${result}`;
-              list.appendChild(listItem);
-            },
-            abort(err) {
-              console.log("Sink error:", err);
+    async writeStream (readableStream) {
+        if ( this.mode != modes.READWRITE ) throw "This file isn't in READWRITE mode"
+        const reader = readableStream.getReader()
+        this.dataBase.transaction([this.fileName], "readwrite")
+            .objectStore(this.fileName)
+            .openCursor()
+            .onsuccess = (event) => {
+                const row = event.target.result
+                if ( row ) {
+                    row.delete()
+                    row.continue();
+                }
             }
-          }, queuingStrategy);
-          
-          sendMessage("Hello, world.", writableStream);
-          Copy to Clipboard
+        let moreData = true
+        while ( moreData ) {
+            const { done, value } = await reader.read()
+            if ( done ) {
+                moreData = false
+                continue
+            }
+            this.dataBase.transaction([this.fileName], "readwrite")
+                .objectStore(this.fileName)
+                .add(value)
+        }
     }
-
 
     static _existsFileObjectStore ( fileName, dataBase ) {
         return dataBase.objectStoreNames.contains(fileName) ? fileName : false
