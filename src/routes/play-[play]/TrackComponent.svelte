@@ -9,7 +9,7 @@
     let playing = false
     let player: HTMLAudioElement
     let trackDuration = 0
-    let currenTrackPosition = tweened(0)
+    let currentTrackPosition = tweened(0)
     let background = "none"
     let buttonIcon: string
     let track_name_color: string
@@ -19,7 +19,7 @@
             trackDuration = player.duration
         })
         player.addEventListener("timeupdate", ()=>{
-            currenTrackPosition.set(player.currentTime)
+            currentTrackPosition.set(player.currentTime)
         })
     })
 
@@ -56,15 +56,15 @@
         <img src={buttonIcon} alt="Play button">
         <p class="{track_name_color}">{track.title}</p>
     </button>
-    {#if playing || player?.currentTime > 0}
+    {#if player?.currentTime > 0}
     <button on:click={resetHandler}>
         <img src="/images/rewind.svg" alt="Stop button">
     </button>
     {/if}
 </div>
 
-{#if playing}
-<progress max={trackDuration} value={$currenTrackPosition}/>
+{#if ($currentTrackPosition > 0 || playing) }
+<progress max={trackDuration} value={$currentTrackPosition}/>
 {/if}
 
 <style>
