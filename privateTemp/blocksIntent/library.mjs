@@ -88,11 +88,11 @@ export class idbFile {
     }
 
     read () {
+        if ( this.mode === modes.APPEND ) throw "This file is in APPEND mode"
         return new Promise(
             (resolve, reject) => {
                 const data = []
-                if ( this.mode === modes.APPEND ) throw "This file is in APPEND mode"
-                this.dataBase.transaction([this.fileName], "readwrite")
+                this.dataBase.transaction([this.fileName], "readonly")
                     .objectStore(this.fileName)
                     .openCursor()
                     .onsuccess = (event) => {
@@ -155,6 +155,27 @@ export class idbFile {
                 .objectStore(this.fileName)
                 .add(value)
         }
+    }
+
+    readableStream () {
+        if ( this.mode === modes.APPEND ) throw "This file is in APPEND mode"
+        return new ReadableStream ({
+            pull(streamerController) {
+                this.dataBase.transaction([this.fileName], "readonly")
+                    .objectStore(this.fileName)
+                    .openCursor()
+                    .onsuccess = event => {
+                        const objectStorePosition = event.target.result;
+                        if (objectStorePosition) {
+                            streamerController.enqueue(objectStorePosition.value)
+                            objectStorePosition.continue();
+                        } else {
+                            streamerController.close();
+                        }
+                    }
+        
+            }
+        })
     }
 
     static _existsFileObjectStore ( fileName, dataBase ) {
