@@ -8,9 +8,6 @@ export const modes = {
     READONLY: 0,
     READWRITE: 1,
     APPEND: 2,
-    WRITABLESTREAM: 3,
-    READABLESTREAM: 4,
-    APPENDSTREAM: 5,
 }
 
 export function testRequirements () {
@@ -90,7 +87,7 @@ export class idbFile {
     read () {
         if ( this.mode === modes.APPEND ) throw "This file is in APPEND mode"
         return new Promise(
-            (resolve, reject) => {
+            (resolve, _) => {
                 const data = []
                 this.dataBase.transaction([this.fileName], "readonly")
                     .objectStore(this.fileName)
@@ -101,7 +98,7 @@ export class idbFile {
                             data.push(row.value)
                             row.continue();
                         } else {
-                          resolve(data.join("\n"))
+                          resolve(data)
                         }
                     }
             }
@@ -149,11 +146,12 @@ export class idbFile {
             const { done, value } = await reader.read()
             if ( done ) {
                 moreData = false
-                continue
             }
-            this.dataBase.transaction([this.fileName], "readwrite")
+            if ( value ) {
+                this.dataBase.transaction([this.fileName], "readwrite")
                 .objectStore(this.fileName)
                 .add(value)
+            }
         }
     }
 
