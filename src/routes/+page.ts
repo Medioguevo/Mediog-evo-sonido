@@ -65,8 +65,8 @@ export const profile: Profile = {
                             src: "/audio/11. SEVERINO 2.mp3",
                         },
                         {
-                            title: "Instrumental rumba final",
-                            src: "/audio/12. INSTRUMENTAL RUMBA FINAL.mp3",
+                            title: "Rumba final",
+                            src: "/audio/12. RUMBA FINAL.mp3",
                         },
                     ]
                 },
@@ -133,8 +133,8 @@ export const profile: Profile = {
                             src: "/audio/11. SEVERINO 2.mp3",
                         },
                         {
-                            title: "Instrumental rumba final",
-                            src: "/audio/12. INSTRUMENTAL RUMBA FINAL.mp3",
+                            title: "Rumba final",
+                            src: "/audio/12. RUMBA FINAL.mp3",
                         },
                     ]
                 },
