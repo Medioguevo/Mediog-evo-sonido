@@ -3,6 +3,7 @@
     import type { Play } from "$lib/types"
     import SceneComponent from "./SceneComponent.svelte"
     import { idStringFrom } from "$lib/aux"
+    import VolumeControl from "./VolumeControl.svelte";
 
     export let play: Play
     let playId = idStringFrom(play.title)
@@ -21,6 +22,8 @@
     <SceneComponent {scene} {playId}/>
     {/each}
 </div>
+
+<VolumeControl/>
 
 <style>
     img.rewind {

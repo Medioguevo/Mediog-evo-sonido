@@ -4,6 +4,8 @@
     import { tweened } from "svelte/motion"
     import type { Track } from "$lib/types"
 
+    import { volumeControl } from "./volumeControl";
+
     export let track: Track
 
     let playing = false
@@ -13,6 +15,7 @@
     let background = "none"
     let buttonIcon: string
     let track_name_color: string
+    const currentVolume = $volumeControl.currentVolume
 
     onMount(()=>{
         player.addEventListener("durationchange", () => {
@@ -23,6 +26,8 @@
         })
     })
 
+    $: if (player) player.volume = $currentVolume
+    
     $: {
         try {
             background = playing ? "yellow" : "none"
@@ -62,7 +67,6 @@
     </button>
     {/if}
 </div>
-
 {#if ($currentTrackPosition > 0 || playing) }
 <progress max={trackDuration} value={$currentTrackPosition}/>
 {/if}
