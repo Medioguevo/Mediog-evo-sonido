@@ -12,31 +12,31 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Entrada público",
-                            src: "/audio/1. INICIO-ENTRADA DE PUBLICO.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/1. INICIO-ENTRADA DE PUBLICO.mp3",
                         },
                         {
                             title: "Acto 1º",
-                            src: "/audio/2. ACTO 1.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/2. ACTO 1.mp3",
                         },
                         {
                             title: "Telefonillo avogado",
-                            src: "/audio/3.TELEFONILLO AVOGADO.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/3.TELEFONILLO AVOGADO.mp3",
                         },
                         {
                             title: "Entrada avoas",
-                            src: "/audio/4.ENTRADA AVOAS.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/4.ENTRADA AVOAS.mp3",
                         },
                         {
                             title: "Telefonillo Felipe",
-                            src: "/audio/5. Telefonillo FELIPE.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/5. Telefonillo FELIPE.mp3",
                         },
                         {
                             title: "Telefonillo Herminia",
-                            src: "/audio/6. Telefonillo HERMINIA.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/6. Telefonillo HERMINIA.mp3",
                         },
                         {
                             title: "Severino 1",
-                            src: "/audio/7. SEVERINO 1.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/7. SEVERINO 1.mp3",
                         },
                     ]
                 },
@@ -45,11 +45,11 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Acto 2º",
-                            src: "/audio/8. ACTO 2.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/8. ACTO 2.mp3",
                         },
                         {
                             title: "El hombre y la tierra",
-                            src: "/audio/9. EL HOMBRE Y LA TIERRA.mp3"
+                            src: "https://medioguevosounds.s3.filebase.com/9. EL HOMBRE Y LA TIERRA.mp3"
                         },
                     ]
                 },
@@ -58,15 +58,15 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Acto 3º",
-                            src: "/audio/10. ACTO 3.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/10. ACTO 3.mp3",
                         },
                         {
                             title: "Severino 2",
-                            src: "/audio/11. SEVERINO 2.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/11. SEVERINO 2.mp3",
                         },
                         {
-                            title: "Rumba final",
-                            src: "/audio/12. RUMBA FINAL.mp3",
+                            title: "Instrumental rumba final",
+                            src: "https://medioguevosounds.s3.filebase.com/12. INSTRUMENTAL RUMBA FINAL.mp3",
                         },
                     ]
                 },
@@ -80,31 +80,31 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Entrada público",
-                            src: "/audio/1. INICIO-ENTRADA DE PUBLICO.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/1. INICIO-ENTRADA DE PUBLICO.mp3",
                         },
                         {
                             title: "Acto 1º",
-                            src: "/audio/2. ACTO 1.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/2. ACTO 1.mp3",
                         },
                         {
                             title: "Telefonillo avogado",
-                            src: "/audio/3.TELEFONILLO AVOGADO.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/3.TELEFONILLO AVOGADO.mp3",
                         },
                         {
                             title: "Entrada avoas",
-                            src: "/audio/4.ENTRADA AVOAS.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/4.ENTRADA AVOAS.mp3",
                         },
                         {
                             title: "Telefonillo Felipe",
-                            src: "/audio/5. Telefonillo FELIPE.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/5. Telefonillo FELIPE.mp3",
                         },
                         {
                             title: "Telefonillo Herminia",
-                            src: "/audio/6. Telefonillo HERMINIA.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/6. Telefonillo HERMINIA.mp3",
                         },
                         {
                             title: "Severino 1",
-                            src: "/audio/7. SEVERINO 1.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/7. SEVERINO 1.mp3",
                         },
                     ]
                 },
@@ -113,11 +113,11 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Acto 2º",
-                            src: "/audio/8. ACTO 2.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/8. ACTO 2.mp3",
                         },
                         {
                             title: "El hombre y la tierra",
-                            src: "/audio/9. EL HOMBRE Y LA TIERRA.mp3"
+                            src: "https://medioguevosounds.s3.filebase.com/9. EL HOMBRE Y LA TIERRA.mp3"
                         },
                     ]
                 },
@@ -126,15 +126,15 @@ export const profile: Profile = {
                     tracks: [
                         {
                             title: "Acto 3º",
-                            src: "/audio/10. ACTO 3.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/10. ACTO 3.mp3",
                         },
                         {
                             title: "Severino 2",
-                            src: "/audio/11. SEVERINO 2.mp3",
+                            src: "https://medioguevosounds.s3.filebase.com/11. SEVERINO 2.mp3",
                         },
                         {
-                            title: "Rumba final",
-                            src: "/audio/12. RUMBA FINAL.mp3",
+                            title: "Instrumental rumba final",
+                            src: "https://medioguevosounds.s3.filebase.com/12. INSTRUMENTAL RUMBA FINAL.mp3",
                         },
                     ]
                 },
