@@ -26,9 +26,11 @@
         })
     })
 
+
     $: if (player) player.volume = $currentVolume
     
     $: {
+
         try {
             background = playing ? "yellow" : "none"
             buttonIcon = playing ? "/images/pause.svg" : "/images/play.svg"

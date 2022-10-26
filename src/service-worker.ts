@@ -26,6 +26,7 @@ function showCacheContent() {
 	});
 }
 
+
 worker.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(
 		caches.open(INSTALLATION_CACHE)
