@@ -12,7 +12,7 @@ export const GET: RequestHandler = function get({ setHeaders }) {
     name: name,
     short_name: shortName,
     description: description,
-    start_url: ".",
+    start_url: "/",
     background_color: backgroundColor,
     theme_color: themeColor,
     display: 'standalone',

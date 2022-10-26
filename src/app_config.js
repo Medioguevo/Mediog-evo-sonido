@@ -5,4 +5,6 @@ export default {
     startUrl: ".",
     backgroundColor: "#212529",
     themeColor: "yellow",
+    middleVolume: 0.2,
+    fadeTime: 1000,
 }
