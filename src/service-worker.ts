@@ -12,9 +12,11 @@ const RUNTIME_CACHE = 'runtime';
 const FILES_FOR_INSTALLATION_CACHE = build.concat(files)
 	.concat([`${worker.registration.scope}service-worker.js`])
 
+/*
 const REQUESTS = FILES_FOR_INSTALLATION_CACHE.map(
 	url => new Request(url, {headers: {"If-Range": ""}})
 )
+*/
 
 /**
  * For debugging only
@@ -34,7 +36,8 @@ function showCacheContent() {
 worker.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(
 		caches.open(INSTALLATION_CACHE)
-			.then( cache => cache.addAll(REQUESTS) )
+			//.then( cache => cache.addAll(REQUESTS) )
+			.then( cache => cache.addAll(FILES_FOR_INSTALLATION_CACHE) )
 			.then( worker.skipWaiting() )
 	)
 })
