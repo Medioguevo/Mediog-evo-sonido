@@ -16,19 +16,19 @@ export const profile: Profile = {
                         },
                         {
                             title: "Ruido de pasillos",
-                            src: "./"
+                            src: "/audio/pasillo.wav"
                         },
                         {
                             title: "Pasos",
-                            src: "./"
+                            src: "/audio/pasos.wav"
                         },
                         {
                             title: "Teléfono",
-                            src: "./"
+                            src: "/audio/telefono.wav"
                         },
                         {
                             title: "Tango",
-                            src: "./"
+                            src: "/audio/tango.wav"
                         }
                     ]
                 }
